@@ -1,1 +1,9 @@
-Django~=5.0.3
+Django
+djangorestframework
+django-cors-headers
+djangorestframework-simplejwt
+python-dotenv
+gunicorn
+gevent
+whitenoise
+psycopg2-binary
