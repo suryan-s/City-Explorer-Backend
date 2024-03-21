@@ -3,15 +3,15 @@ import uuid
 from django.db import models
 
 from AuthManager.models import UserProfile
-from RecommendationManager.models import Cuisine, Entertainment, Weather, TimeOfDay
+from RecommendationManager.models import Cuisine, Entertainment, Weather, TimeOfDay, IndoorActivity, OutdoorActivity
 
 
 class UserPreferences(models.Model):
     id = models.UUIDField(primary_key=True, editable=False, unique=True, default=uuid.uuid4)
     user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    preferred_location = models.JSONField(default=dict)
-    preferred_indoor_activities = models.JSONField(default=dict)
-    preferred_outdoor_activities = models.JSONField(default=dict)
+    preferred_location = models.CharField(max_length=255)
+    preferred_indoor_activities = models.ManyToManyField(IndoorActivity)
+    preferred_outdoor_activities = models.ManyToManyField(OutdoorActivity)
     preferred_cuisine = models.ManyToManyField(Cuisine)
     preferred_entertainment = models.ManyToManyField(Entertainment)
     preferred_weather = models.ManyToManyField(Weather)

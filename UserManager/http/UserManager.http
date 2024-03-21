@@ -35,3 +35,37 @@ GET http://localhost:8000/api/v1/user/preferences
 Accept: application/json
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+### Create User preferences
+POST http://localhost:8000/api/v1/user/preferences
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+{
+  "preferred_location": "Trivandrum, Kollam",
+  "preferred_indoor_activities": [
+    "Yoga",
+    "Meditation"
+  ],
+  "preferred_outdoor_activities": [
+    "Hiking or trekking in nature trails",
+    "Gardening or tending to a community garden"
+  ],
+  "preferred_cuisine": [
+    "Indian",
+    "Italian"
+  ],
+  "preferred_entertainment": [
+    "Movie Theater",
+    "Art Gallery"
+  ],
+  "preferred_weather": [
+    "Sunny",
+    "Rainy"
+  ],
+  "preferred_time": [
+    "Morning",
+    "Evening"
+  ]
+}

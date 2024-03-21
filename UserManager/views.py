@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from AuthManager.models import UserProfile
+from RecommendationManager.models import Cuisine, Entertainment, TimeOfDay, Weather, IndoorActivity, OutdoorActivity
 from UserManager.models import UserRecommendationHistory, UserPreferences
 from UserManager.serializers import UserBaseInfoViewDataSerializer, UserRecommendationHistoryViewDataSerializer, \
     UserPreferencesViewDataSerializer
@@ -108,16 +109,34 @@ class UserPreferencesView(APIView):
             return Response({'detail': 'No preferences found!'}, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request):
-        """
-        Creates user preferences in the database.
-        :param request:
-        :return:
-        """
         if UserPreferences.objects.filter(user=request.user).exists():
             return Response({'detail': 'Preferences already exist!'}, status=status.HTTP_400_BAD_REQUEST)
-        serializer = UserPreferencesViewDataSerializer(data=request.data)
+
+        preference_data = request.data.copy()
+
+        preference_models = {
+            'preferred_cuisine': Cuisine,
+            'preferred_entertainment': Entertainment,
+            'preferred_time': TimeOfDay,
+            'preferred_weather': Weather,
+            'preferred_indoor_activities': IndoorActivity,
+            'preferred_outdoor_activities': OutdoorActivity
+        }
+
+        for preference, model in preference_models.items():
+            preference_names = preference_data.pop(preference, [])
+            if not preference_names:
+                return Response({'detail': f'Please provide {preference}!'}, status=status.HTTP_400_BAD_REQUEST)
+            preferences = model.objects.filter(name__in=preference_names)
+            if len(preference_names) != preferences.count():
+                return Response({'detail': f'Invalid {preference} names provided!'}, status=status.HTTP_400_BAD_REQUEST)
+            # Replace the preference names with their corresponding pk values
+            preference_data[preference] = [pref.pk for pref in preferences]
+
+        preference_data['user'] = request.user.id
+        serializer = UserPreferencesViewDataSerializer(data=preference_data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        user_preferences = serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def put(self, request):

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'UserManager',
     'RecommendationManager',
     'LocationDataManager',
+    'WeatherDatamanager',
 ]
 
 MIDDLEWARE = [

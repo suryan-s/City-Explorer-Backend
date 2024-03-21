@@ -23,7 +23,7 @@ class UserPreferencesViewDataSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserPreferences
-        fields = ['preferred_location', 'preferred_indoor_activities', 'preferred_outdoor_activities',
+        fields = ['user', 'preferred_location', 'preferred_indoor_activities', 'preferred_outdoor_activities',
                   'preferred_cuisine', 'preferred_entertainment', 'preferred_weather', 'preferred_time']
 
 
