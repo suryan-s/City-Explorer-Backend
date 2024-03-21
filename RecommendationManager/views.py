@@ -9,7 +9,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from RecommendationManager.models import IndoorActivity, OutdoorActivity
 from RecommendationManager.serializers import WeatherSerializer, CuisineSerializer, EntertainmentSerializer, \
     TimeOfDaySerializer, OutdoorActivitySerializer, IndoorActivitySerializer
-from UserManager.models import UserPreferences
+from UserManager.models import UserPreferences, UserRecommendationHistory
 from WeatherDatamanager.views import WeatherInfoView
 
 IndoorWeather = ['Tornado', 'Rain', 'Snow', 'Thunderstorm', 'Drizzle', 'Mist', 'Haze', 'Fog', 'Sand', 'Dust', 'Ash',
@@ -53,8 +53,10 @@ class RecommendActivityView(APIView):
                 preferred_activities_names = [activity.name for activity in preferred_activities]
                 extra_activities_names = [activity.name for activity in extra_activities]
 
+                body = {'preferred': preferred_activities_names, 'suggested': extra_activities_names}
+                UserRecommendationHistory.objects.create(user=request.user, recommendation=body)
                 return Response(
-                    {'preferred': preferred_activities_names, 'suggested': extra_activities_names},
+                    body,
                     status=status.HTTP_200_OK)
             else:
                 user_preferences = UserPreferences.objects.get(user=request.user)
@@ -65,8 +67,10 @@ class RecommendActivityView(APIView):
                 preferred_activities_names = [activity.name for activity in preferred_activities]
                 extra_activities_names = [activity.name for activity in extra_activities]
 
+                body = {'preferred': preferred_activities_names, 'suggested': extra_activities_names}
+                UserRecommendationHistory.objects.create(user=request.user, recommendation=body)
                 return Response(
-                    {'preferred': preferred_activities_names, 'suggested': extra_activities_names},
+                    body,
                     status=status.HTTP_200_OK)
         else:
             return Response({'detail': f'{result.data}'}, status=result.status_code)
