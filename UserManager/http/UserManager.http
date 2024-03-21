@@ -1,0 +1,37 @@
+### User data fetch
+GET http://localhost:8000/api/v1/user/info
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+### User data update
+PUT http://localhost:8000/api/v1/user/info
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+{
+    "username": "newer_user",
+    "email": "new_user@example.com",
+    "first_name": "First",
+    "last_name": "Last",
+    "password": "secure_password123#"
+}
+
+### User data delete
+DELETE http://localhost:8000/api/v1/user/info
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+### Fetch User recommendations history
+GET http://localhost:8000/api/v1/user/recommendation/history
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
+
+### Fetch User preferences
+GET http://localhost:8000/api/v1/user/preferences
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE

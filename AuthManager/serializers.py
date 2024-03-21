@@ -1,18 +1,20 @@
-from rest_framework import serializers
-
+import re
 
 from django.core.exceptions import ValidationError
-import re
+from rest_framework import serializers
 
 from AuthManager.models import UserProfile
 
 
 class CustomPasswordValidator:
     """
-    Custom password validator to check whether the password contains at least 1 letter, 1 digit, and 1 special character.
+    Custom password validator to check whether the password contains at least:
+     1. one letter
+     2. one digit
+     3. one special character.
     """
 
-    def validate(self, password, user=None):
+    def validate(self, password):
         """
         Validate whether the password is valid or not.
         """
@@ -61,6 +63,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
         if password is not None:
             instance.set_password(password)
         return super(UserProfileSerializer, self).update(instance, validated_data)
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation.pop('id', None)
+        return representation
 
 
 class LoginSerializer(serializers.Serializer):
