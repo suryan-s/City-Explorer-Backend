@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from RecommendationManager.models import IndoorActivity, OutdoorActivity
+from RecommendationManager.models import IndoorActivity, OutdoorActivity, Weather, Cuisine, Entertainment, TimeOfDay
 from RecommendationManager.serializers import WeatherSerializer, CuisineSerializer, EntertainmentSerializer, \
-    TimeOfDaySerializer, OutdoorActivitySerializer, IndoorActivitySerializer
+    TimeOfDaySerializer
 from UserManager.models import UserPreferences, UserRecommendationHistory
 from WeatherDatamanager.views import WeatherInfoView
 
@@ -81,11 +81,29 @@ class ActivityView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        pass
+        activity_type = request.GET.get('type', None)
+        activities = None
+        if activity_type is None:
+            return Response({'detail': 'Activity type not provided!'}, status=status.HTTP_400_BAD_REQUEST)
+        if activity_type == "indoor":
+            activities = IndoorActivity.objects.all()
+        elif activity_type == "outdoor":
+            activities = OutdoorActivity.objects.all()
+        elif activity_type == "weather":
+            activities = Weather.objects.all()
+        elif activity_type == "cuisine":
+            activities = Cuisine.objects.all()
+        elif activity_type == "entertainment":
+            activities = Entertainment.objects.all()
+        elif activity_type == "timeofday":
+            activities = TimeOfDay.objects.all()
+        else:
+            return Response({'detail': 'Invalid activity type!'}, status=status.HTTP_400_BAD_REQUEST)
+        activities_names = [activity.name for activity in activities]
+        return Response({"Activities":activities_names}, status=status.HTTP_200_OK)
 
     def post(self, request):
         activity_type = request.data.get('type', None)
-        print(activity_type)
         serializer = None
         if activity_type == "weather":
             serializer = WeatherSerializer(data=request.data)

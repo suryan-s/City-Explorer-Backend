@@ -27,6 +27,20 @@ class UserPreferencesViewDataSerializer(serializers.ModelSerializer):
                   'preferred_cuisine', 'preferred_entertainment', 'preferred_weather', 'preferred_time']
 
 
+class UserPreferencesGetViewDataSerializer(serializers.ModelSerializer):
+    preferred_indoor_activities = serializers.StringRelatedField(many=True)
+    preferred_outdoor_activities = serializers.StringRelatedField(many=True)
+    preferred_cuisine = serializers.StringRelatedField(many=True)
+    preferred_entertainment = serializers.StringRelatedField(many=True)
+    preferred_weather = serializers.StringRelatedField(many=True)
+    preferred_time = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = UserPreferences
+        fields = ['user', 'preferred_location', 'preferred_indoor_activities', 'preferred_outdoor_activities',
+                  'preferred_cuisine', 'preferred_entertainment', 'preferred_weather', 'preferred_time']
+
+
 class UserPreferencesCreateViewDataSerializer(serializers.ModelSerializer):
     pass
 

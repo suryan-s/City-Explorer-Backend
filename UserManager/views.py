@@ -9,7 +9,7 @@ from AuthManager.models import UserProfile
 from RecommendationManager.models import Cuisine, Entertainment, TimeOfDay, Weather, IndoorActivity, OutdoorActivity
 from UserManager.models import UserRecommendationHistory, UserPreferences
 from UserManager.serializers import UserBaseInfoViewDataSerializer, UserRecommendationHistoryViewDataSerializer, \
-    UserPreferencesViewDataSerializer
+    UserPreferencesViewDataSerializer, UserPreferencesGetViewDataSerializer
 
 
 class UserInfoView(APIView):
@@ -103,7 +103,7 @@ class UserPreferencesView(APIView):
         """
         queryset = UserPreferences.objects.filter(user=request.user)
         if queryset.exists():
-            result = UserPreferencesViewDataSerializer(queryset, many=True)
+            result = UserPreferencesGetViewDataSerializer(queryset, many=True)
             return Response({'detail': result.data}, status=status.HTTP_200_OK)
         else:
             return Response({'detail': 'No preferences found!'}, status=status.HTTP_404_NOT_FOUND)
