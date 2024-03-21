@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'AuthManager',
     'UserManager',
     'RecommendationManager',
+    'LocationDataManager',
 ]
 
 MIDDLEWARE = [

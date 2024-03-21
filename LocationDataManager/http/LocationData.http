@@ -1,0 +1,5 @@
+### Fetch location data
+GET http://localhost:8000/api/v1/location/info?city=Paris&state=Ile-de-France&country=France
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMDgxODY1LCJpYXQiOjE3MTEwMjc4NjUsImp0aSI6ImU4MWM4NjBkNTJmMTRlN2U5OWZkYzU2YWI5OGQ1OTdlIiwidXNlcl9pZCI6IjgyN2YxYzYyLTFjZjEtNGZiZi04M2ZmLTQwYmU2MWUzYjRlYyJ9.eaamKc-Yk5gWY1Dk3UYjjatWkOgtiX_an_MfZkgvatE
