@@ -1,0 +1,437 @@
+{
+	"info": {
+		"_postman_id": "2585c09c-78da-44db-aef1-bf644fa23bb9",
+		"name": "City Explorer Backend",
+		"description": "City Explorer Backend is the project developed for the selection round of the Backend Intern role.\n\n**Important note:**\n\n1. Authentication is of Bearer token and could be obtained by sending a login request.\n    \n2. Access token and Refresh token would be automatically retrived from the cookies by the server for logout and refresh token API calls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23478813"
+	},
+	"item": [
+		{
+			"name": "Authentications",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"user\",\n    \"email\": \"user@mail.com\",\n    \"first_name\": \"First\",\n    \"last_name\": \"Last\",\n    \"password\": \"secure_password123#\",\n    \"country\": \"IN\",\n    \"state\": \"KL\",\n    \"city\": \"TVM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@mail.com\",\n    \"password\": \"secure_password123#\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/auth/logout"
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "UserManager",
+			"item": [
+				{
+					"name": "User details fetch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/user/info"
+					},
+					"response": []
+				},
+				{
+					"name": "User data update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newer_user\",\n    \"email\": \"new_user@gmail.com\",\n    \"first_name\": \"First\",\n    \"last_name\": \"Last\",\n    \"password\": \"secure_password123#\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/info"
+					},
+					"response": []
+				},
+				{
+					"name": "User data delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/user/info"
+					},
+					"response": []
+				},
+				{
+					"name": "User recommendation history",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/user/recommendation/history"
+					},
+					"response": []
+				},
+				{
+					"name": "User preferences create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"preferred_location\": \"Trivandrum, Kollam\",\n  \"preferred_indoor_activities\": [\n    \"Yoga\",\n    \"Meditation\"\n  ],\n  \"preferred_outdoor_activities\": [\n    \"Hiking or trekking in nature trails\",\n    \"Gardening or tending to a community garden\"\n  ],\n  \"preferred_cuisine\": [\n    \"Indian\",\n    \"Italian\"\n  ],\n  \"preferred_entertainment\": [\n    \"Movie Theater\",\n    \"Art Gallery\"\n  ],\n  \"preferred_weather\": [\n    \"Sunny\",\n    \"Rainy\"\n  ],\n  \"preferred_time\": [\n    \"Morning\",\n    \"Evening\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/preferences"
+					},
+					"response": []
+				},
+				{
+					"name": "User preferences fetch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/user/preferences"
+					},
+					"response": []
+				},
+				{
+					"name": "User preferences update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"preferred_location\": \"Trivandrum, Kollam\",\n  \"preferred_indoor_activities\": [\n    \"Yoga\",\n    \"Meditation\"\n  ],\n  \"preferred_outdoor_activities\": [\n    \"Hiking or trekking in nature trails\",\n    \"Gardening or tending to a community garden\"\n  ],\n  \"preferred_cuisine\": [\n    \"Indian\",\n    \"Italian\"\n  ],\n  \"preferred_entertainment\": [\n    \"Movie Theater\",\n    \"Art Gallery\"\n  ],\n  \"preferred_weather\": [\n    \"Sunny\",\n    \"Rainy\"\n  ],\n  \"preferred_time\": [\n    \"Morning\",\n    \"Evening\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/user/preferences"
+					},
+					"response": []
+				},
+				{
+					"name": "User preferences delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/user/preferences"
+					},
+					"response": []
+				}
+			],
+			"description": "Contains all the APIs required for the User based requirements"
+		},
+		{
+			"name": "WeatherData",
+			"item": [
+				{
+					"name": "Fetch Weather data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/weather/current?city=trivandrum",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"weather",
+								"current"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "trivandrum"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LocationData",
+			"item": [
+				{
+					"name": "Location based spots fetch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/location/info?city=paris&state=Ile-de-France&country=france",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"info"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "paris"
+								},
+								{
+									"key": "state",
+									"value": "Ile-de-France"
+								},
+								{
+									"key": "country",
+									"value": "france"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recommendation",
+			"item": [
+				{
+					"name": "get Activities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recommendation/activity?type=indoor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recommendation",
+								"activity"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "indoor"
+								},
+								{
+									"key": "type",
+									"value": "outdoor",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "weather",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "cuisine",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "entertainment",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "timeofday",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Recommendation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/recommendation/current?city=trivandrum",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"recommendation",
+								"current"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "trivandrum"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzExMTAzMDAxLCJpYXQiOjE3MTEwNDkwMDEsImp0aSI6IjM2MzY3YTg0NTg1MDQ2NzBhYjMzZjIxZWM2MWM5YWYwIiwidXNlcl9pZCI6IjBmNDE0ZGRkLTVmZTUtNDg4OS05ZDlmLTNmM2JkNjNkMjQxNSJ9.pDZNyHbsrnEhYgKO7egaUlB97d18Lle9C1bhgP85leo"
+		},
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000/api/v1"
+		}
+	]
+}

@@ -53,7 +53,8 @@ class RecommendActivityView(APIView):
                 preferred_activities_names = [activity.name for activity in preferred_activities]
                 extra_activities_names = [activity.name for activity in extra_activities]
 
-                body = {'preferred': preferred_activities_names, 'suggested': extra_activities_names}
+                body = {'Mode': preference, 'preferred': preferred_activities_names,
+                        'suggested': extra_activities_names}
                 UserRecommendationHistory.objects.create(user=request.user, recommendation=body)
                 return Response(
                     body,
@@ -67,7 +68,8 @@ class RecommendActivityView(APIView):
                 preferred_activities_names = [activity.name for activity in preferred_activities]
                 extra_activities_names = [activity.name for activity in extra_activities]
 
-                body = {'preferred': preferred_activities_names, 'suggested': extra_activities_names}
+                body = {'Mode': preference, 'preferred': preferred_activities_names,
+                        'suggested': extra_activities_names}
                 UserRecommendationHistory.objects.create(user=request.user, recommendation=body)
                 return Response(
                     body,
@@ -100,7 +102,7 @@ class ActivityView(APIView):
         else:
             return Response({'detail': 'Invalid activity type!'}, status=status.HTTP_400_BAD_REQUEST)
         activities_names = [activity.name for activity in activities]
-        return Response({"Activities":activities_names}, status=status.HTTP_200_OK)
+        return Response({"Activities": activities_names}, status=status.HTTP_200_OK)
 
     def post(self, request):
         activity_type = request.data.get('type', None)
