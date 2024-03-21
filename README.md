@@ -15,5 +15,5 @@ setting up a virtual environment
 3. Based on the .env.sample file, create a .env file with required settings
 4. Run the migrations using `python manage.py make migrations` and `python manage.py migrate`
 5. Run the server using `python manage.py runserver 8000`
-6. General Migrations would be required for the database to be set up properly. SQL commands for populating the tables 
-would be provided in the scripts' folder.
+6. General Migrations would be required for the database to be set up properly.
+   SQL commands for populating and creating the tables would be provided in the scripts' folder.
