@@ -1,0 +1,32 @@
+### Register
+POST http://localhost:8000/api/v1/auth/register
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "new_user",
+    "email": "new_user@example.com",
+    "first_name": "First",
+    "last_name": "Last",
+    "password": "secure_password123#"
+}
+
+
+### Login
+POST http://localhost:8000/api/v1/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "email": "new_user@example.com",
+    "password": "secure_password123#"
+}
+
+
+### logout
+POST http://localhost:8000/api/v1/auth/logout
+Accept: application/json
+
+### Refresh token
+POST http://localhost:8000/api/v1/auth/login/refresh
+Accept: application/json
